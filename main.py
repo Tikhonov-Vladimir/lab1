@@ -1,23 +1,21 @@
 import json
 
 file = open("pokemon_full.json")
-str_json = file.read()
-len_str = len(str_json)
+str_pokemon = file.read()
+len_str = len(str_pokemon)
 print("Общее количество символов в файле равно", len_str)
 file.close()
 
-file = open("pokemon_full.json")
 counter = 0
-for i in str_json:
-    if i.isalnum() is True:
+for symbol in str_pokemon:
+    if symbol.isalnum():
         counter += 1
 print("Общее количесто символов без пробелов и знаков препинания равно", counter)
-file.close()
 
-data = json.loads(str_json)
+objects = json.loads(str_pokemon)
 max_desc = 0
 poke_name = ""
-for profile in data:
+for profile in objects:
     desc = profile["description"]
     if len(desc) > max_desc:
         max_desc = len(desc)
@@ -26,7 +24,7 @@ print("У покемона", poke_name, "наиболее длинное опи�
 
 max_words = 0
 abilities = ""
-for profile in data:
+for profile in objects:
     for skills in profile["abilities"]:
         if len(skills.split()) > max_words:
             max_words = len(skills.split())
